@@ -3,6 +3,7 @@ require("minitest/rg")
 require_relative("../room")
 require_relative("../guest")
 require_relative("../song")
+require('pry')
 
 
 class RoomTest < MiniTest::Test
@@ -29,7 +30,7 @@ class RoomTest < MiniTest::Test
   end
 
   def test_number_of_occupants
-    assert_equal(3, @occupants.length)
+    assert_equal(1, @occupants.length)
   end
 
   def test_number_of_songs
@@ -37,26 +38,25 @@ class RoomTest < MiniTest::Test
   end
 
   def test_add_song_to_playlist
-
     @room.add_song_to_playlist(@song4)
     assert_equal(3, @playlist.length)
+  end
 
+  def test_remove_song_from_playlist
+    @room.remove_song_from_playlist(@song2)
+    assert_equal(1, @playlist.length)
   end
 
   def test_add_guest_to_occupants
-
     @room.add_guest_to_occupants(@guest2)
     assert_equal(2, @occupants.length)
-
   end
 
   def test_remove_guest_from_rooms
-
     @room.add_guest_to_occupants(@guest2)
     @room.add_guest_to_occupants(@guest3)
     @room.remove_guest_from_rooms(@guest2)
     @room.remove_guest_from_rooms(@guest3)
-
     assert_equal(1, @occupants.length)
   end
 

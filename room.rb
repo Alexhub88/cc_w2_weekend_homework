@@ -1,6 +1,8 @@
 class Room
 
-  attr_reader :name, :occupants, :playlist
+  attr_reader :name
+
+  attr_accessor :occupants, :playlist
 
   def initialize(name, occupants =[], playlist = [])
     @name = name
@@ -10,6 +12,10 @@ class Room
 
   def add_song_to_playlist(song)
     @playlist.push(song)
+  end
+
+  def remove_song_from_playlist(song)
+    @playlist.delete(song)
   end
 
   def add_guest_to_occupants(guest)
