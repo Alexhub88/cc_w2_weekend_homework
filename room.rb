@@ -21,7 +21,18 @@ class Room
   end
 
   def add_guest_to_occupants(guest)
-    @occupants.push(guest)
+    if guest_can_afford_entry_fee(guest)
+      guest.decrease_guest_cash(@entry_fee)
+      @occupants.push(guest)
+      return true
+    else
+      puts "Sorry, pal - no entry. You can't afford this place tonight. And your trainers don't meet the dress code. Oh, am I being unreasonable? Sling yer hook!"
+      return false
+    end
+  end
+
+  def remove_guest_from_rooms(guest)
+    @occupants.delete(guest)
   end
 
   def add_multiple_guests(guests_to_add_array)
@@ -35,10 +46,6 @@ class Room
     end
   end
 
-  def remove_guest_from_rooms(guest)
-    @occupants.delete(guest)
-  end
-
   def guest_can_afford_entry_fee(guest)
     return (guest.cash >= @entry_fee)
   end
@@ -50,16 +57,6 @@ class Room
       return true
     else
       puts "Awwww.... denied!"
-      return false
-    end
-  end
-
-  def start_guest_tab(guest)
-    if guest_can_afford_entry_fee(guest)
-      guest.increase_guest_tab(@entry_fee)
-      return true
-    else
-      puts "Sorry, pal - no entry. You can't afford this place tonight. And your trainers don't meet the dress code. Oh, am I being unreasonable? Sling yer hook!"
       return false
     end
   end
