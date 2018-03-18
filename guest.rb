@@ -1,9 +1,9 @@
 class Guest
 
-  attr_reader :name, :favourite_song, :competitor
+  attr_reader :name, :favourite_song, :is_competitor
   attr_accessor :cash, :tab, :points
 
-  def initialize(name, cash, favourite_song, tab, is_competitor = false)
+  def initialize(name, cash, favourite_song, tab, is_competitor)
     @name = name
     @cash = cash
     @favourite_song = favourite_song
