@@ -54,5 +54,14 @@ class Room
     end
   end
 
+  def start_guest_tab(guest)
+    if guest_can_afford_entry_fee(guest)
+      guest.increase_guest_tab(@entry_fee)
+      return true
+    else
+      puts "Sorry, pal - no entry. You can't afford this place tonight. And your trainers don't meet the dress code. Oh, am I being unreasonable? Sling yer hook!"
+      return false
+    end
+  end
 
 end
